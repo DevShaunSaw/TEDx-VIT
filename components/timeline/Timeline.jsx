@@ -1,0 +1,65 @@
+import styles from './Timeline.module.css'
+import TitleIcon from '../core/TitleIcon'
+import ImageGallery from 'react-image-gallery'
+
+const Timeline = () => {
+  const images = [
+    {
+      original: 'timeline1.jpg'
+    },
+    {
+      original: 'timeline2.jpg'
+    },
+    {
+      original: 'timeline3.jpg'
+    },
+    {
+      original: 'timeline4.jpg'
+    }
+  ]
+
+  function renderLeftNav (onClick, disabled) {
+    return (
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        className={`${styles.navbutton} ${styles.left}`}
+      >
+        <i className='fa fa-angle-left' />
+      </button>
+    )
+  }
+
+  function renderRightNav (onClick, disabled) {
+    return (
+      <button
+        type='button'
+        disabled={disabled}
+        onClick={onClick}
+        aria-label='Next Slide'
+        className={`${styles.navbutton} ${styles.right}`}
+      >
+        <i className='fa fa-angle-right' />
+      </button>
+    )
+  }
+
+  return (
+    <div className='darkbg' id='timeline'>
+      <div className={styles.speaktitle}>
+                <h2>Itinerary</h2>
+      </div>
+      {/* <TitleIcon title='Timeline' img='/timeline.svg' /> */}
+      <ImageGallery
+        items={images}
+        showFullscreenButton={false}
+        showPlayButton={false}
+        infinite={false}
+        renderLeftNav={renderLeftNav}
+        renderRightNav={renderRightNav}
+      />
+    </div>
+  )
+}
+
+export default Timeline

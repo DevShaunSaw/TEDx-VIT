@@ -1,0 +1,127 @@
+.footer {
+    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color:var(--light);
+    color:var(--dark);
+    padding: 20px 50px;
+  }
+  
+.footer h1{
+  font-family: "Product Sans", sans-serif;
+  line-height: 1rem;
+  padding: 0.5rem 5rem;
+  text-align:left;
+  font-size: 3rem;
+  color:var(--dark);
+}
+
+.contactContainer {
+  margin: 25px 0 0 25px;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+  .content {
+    margin: auto;
+    padding: 0.5rem 4rem;
+    line-height: 0.8rem;
+  }
+  
+  .content h1 {
+    font-family: "Product Sans", sans-serif;
+    text-align: left;
+    line-height: 5rem;
+    color:var(--dark);
+  }
+  
+  .content h2 {
+    font-family: "Work Sans Medium", sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color:var(--dark);
+  }
+  
+  .content h3 {
+    font-family: "Work Sans", sans-serif;
+    font-weight: normal;
+  }
+  
+  .content h4 {
+    font-family: "Work Sans", sans-serif;
+    font-weight: normal;
+    font-size: 0.75rem;
+    line-height: 0.2rem;
+    color:var(--dark);
+  }
+  
+  .contact {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    gap: 2rem;
+    line-height: 0.5rem;
+  }
+
+  .contactLink {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  
+  .social {
+    padding-top: 2rem;
+    display: flex;
+    gap: 3.5rem;
+  }
+  
+  .image {
+    margin: auto 0;
+    height: 25rem;
+    width: 25rem;
+  }
+  
+  @media (max-width: 760px) {
+
+    .footer h1{
+      width: 100vw;
+      padding: 0;
+    }
+
+    .contactContainer {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+  
+    .content {
+      padding: 0;
+    }
+  
+    .footer h1 {
+      font-size: 2.5rem;
+      line-height: normal;
+    }
+  
+    .content h2 {
+      line-height: normal;
+      width: 250px;
+    }
+  
+    .social {
+      margin: auto;
+      height: auto;
+      width: 75vw;
+      padding: 1.5rem 0;
+    }
+  
+    .image {
+      height: 0;
+      margin: auto;
+      width: 0;
+      float: top;
+    }
+  }

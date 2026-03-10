@@ -1,0 +1,114 @@
+.speakouter {
+    background-color: var(--white);
+    border: 1px solid black;
+    border-radius: 7px;
+    min-height: 100%;
+    width: 16rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+      0 1px 1px rgb(0 0 0 / 5%),
+      0 2px 2px rgb(0 0 0 / 5%),
+      0 4px 4px rgb(0 0 0 / 5%),
+      0 6px 8px rgb(0 0 0 / 5%),
+      0 8px 16px rgb(0 0 0 / 5%);
+  }
+  
+  .speakinner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .content {
+    overflow-wrap: break-word;
+    max-width: 100vh;
+  }
+  
+  .content h1 {
+    font-size: 1.6rem;
+    font-family: "Product Sans Medium", sans-serif;
+    color: black;
+    margin: 10px;
+    line-height: 1.6rem;
+    text-align: center;
+  }
+  
+  .content h3 {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+  
+  .content p {
+    font-family: "Product Sans", sans-serif;
+    color: var(--textdark);
+    font-weight: bold;
+    font-style: normal;
+    margin-bottom: 0;
+    margin-top: 0;  
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .talk_link {
+    font-family: "Product Sans", sans-serif;
+    color: var(--red);
+    font-weight: bold;
+    font-style: normal;
+    margin-bottom: 0;
+    margin-top: 1rem;  
+    font-size: 0.9rem;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .image {
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid black;
+    height: 10rem;
+    width: 10rem;
+    float: none;
+    margin: auto;
+    
+  }
+  
+  @media (max-width: 760px) {
+    .speakouter {
+      width: 14rem;
+    }
+  
+    .speakinner {
+      display: block;
+      padding-top: 1rem;
+    }
+  
+    .content {
+      max-width: 100vh;
+    }
+  
+    .content h1 {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+  
+    .content p {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  
+    .image {
+      height: 6rem;
+      width: 6rem;
+      float: none;
+      margin: auto;
+    }
+  }
+  
