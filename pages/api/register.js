@@ -1,5 +1,5 @@
-import connectMongo from "../../lib/mongodb";
-import TempRegistration from "../../models/tempRegisterationModel";
+import connectMongo from "../lib/mongodb";
+import TempRegistration from "../models/Booking";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     const { fullName, phoneNumber, email, seat, userId } = req.body;
 
     // Basic validation
-    if (!fullName || !phoneNumber || !email || !seat) {
+    if (!fullName || !phoneNumber || !email) {
       return res.status(400).json({
         error: "All fields are required.",
       });
@@ -27,12 +27,6 @@ export default async function handler(req, res) {
     if (!/^[6-9]\d{9}$/.test(cleanedPhone)) {
       return res.status(400).json({
         error: "Enter a valid 10-digit Indian mobile number.",
-      });
-    }
-
-    if (!["general", "premium", "vip"].includes(seat)) {
-      return res.status(400).json({
-        error: "Invalid seat type.",
       });
     }
 

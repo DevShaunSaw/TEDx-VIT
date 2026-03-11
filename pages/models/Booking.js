@@ -25,6 +25,14 @@ const BookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isConfirmed: {
+    type: Boolean,
+    default: false
+  },
+  hasAttended: {
+    type: Boolean,
+    default: false
+  }
 }, {
   timestamps: true,
 });

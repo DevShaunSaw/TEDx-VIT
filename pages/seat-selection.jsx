@@ -2,10 +2,26 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from "next-auth/react";
+import { motion, AnimatePresence } from "framer-motion";
 import toast from 'react-hot-toast';
 import styles from "../styles/seat.module.css";
 import Navbar from '../components/widgets/navbar/Navbar';
 import MiniFooter from '../components/widgets/minifooter/MiniFooter';
+import RegisterModal from "../components/RegisterModal";
+
+const C = {
+  bg: "#040202",
+  bgSection: "#070101",
+  red: "#C8102E",
+  redHot: "#FF2A2A",
+  redDeep: "#6B0010",
+  text: "rgba(235,195,195,0.95)",
+  textMuted: "rgba(210,145,145,0.78)",
+  textDim: "rgba(195,120,120,0.62)",
+  textGhost: "rgba(175,100,100,0.48)",
+  border: "rgba(180,30,30,0.18)",
+  borderMid: "rgba(180,30,30,0.28)",
+};
 
 export default function BookingPage() {
   const router = useRouter();
@@ -14,6 +30,14 @@ export default function BookingPage() {
   const [occupiedSeats, setOccupiedSeats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+
+  const openModal = () => {
+    if (!selectedSeat)
+      alert('Please select a seat first!')
+    else
+      setRegisterOpen(true);
+  }
 
   const MOVIE_ID = 'TedxVIT-2026';
   const NUM_COLS = 17;
@@ -168,25 +192,6 @@ export default function BookingPage() {
       <Navbar />
       <div className={styles['booking-container']}>
 
-      <div className={styles['movie-details']}>
-        <img src="/assets/ford_poster.jpg" alt="Ford v Ferrari" className={styles['movie-poster']} />
-        <h2 className={styles['movie-title']}>Ford v Ferrari</h2>
-        <div className={styles['movie-info']}>
-          <div className={styles['info-item']}>
-            <i className="far fa-calendar-alt"></i>
-            <span>2019</span>
-          </div>
-          <div className={styles['info-item']}>
-            <i className="far fa-clock"></i>
-            <span>2h 32m</span>
-          </div>
-        </div>
-        <p className={styles['movie-description']}>
-          American car designer Carroll Shelby and driver Ken Miles battle corporate interference 
-          and the laws of physics to build a revolutionary race car for Ford in order to defeat Ferrari at the 24 Hours of Le Mans in 1966.
-        </p>
-      </div>
-
       <div className={styles['seat-selection']}>
         <div className={styles['screen-container']}>
           <div className={styles['screen-label']}>Screen This Way</div>
@@ -224,15 +229,18 @@ export default function BookingPage() {
           <div className={styles['selected-seats']}>
             {selectedSeat ? `Selected: ${selectedSeat}` : 'No seats selected'}
           </div>
-          <button className={styles['confirm-btn']} onClick={handleBooking}>
+          <button className={styles['confirm-btn']} onClick={openModal}>
             Confirm Booking
           </button>
         </div>
       </div>
-
-
       </div>
       <MiniFooter />
+      <RegisterModal
+        open={registerOpen}
+        seatValue = {selectedSeat}
+        onClose={() => setRegisterOpen(false)}
+      />
     </>
   );
 }
