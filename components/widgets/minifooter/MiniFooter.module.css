@@ -1,8 +1,10 @@
 .footer {
-    display: flex;
-    justify-content: left;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark);
+  color: var(--white);
+}
+
 .footer h1{
   font-family: "Product Sans", sans-serif;
   line-height: 1rem;
@@ -16,122 +18,141 @@
 }
 
 .footerMap p {
-    font-family: "Product Sans", sans-serif;
-    width: 350px;
-    font-size: 20px;
-    color: var(--white);
-    margin-bottom: 0.5rem;
+  font-family: "Product Sans", sans-serif;
+  width: 100%;
+  max-width: 350px;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.iframeMap {
+  width: 350px;
+  height: 250px;
+  border: 0;
 }
 
 .newfooter {
-    display: flex;
-    align-items: center;
-    margin: 0 32px;
-    justify-content: space-between;
-    background-color: var(--dark);
-    font-weight: 400;
-    color: var(--white);
-    padding-bottom: 0.5rem;
-  }
+  display: flex;
+  align-items: center;
+  margin: 0 32px;
+  justify-content: space-between;
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+}
 
 .newfooter a{
-    text-decoration: underline;
+  text-decoration: underline;
 }
-  
-  .footer p {
-    text-align: center;
-    font-family: "Product Sans", sans-serif !important;
-  }
-  
-  .footer span {
-    color: red;
+
+.copyright {
+  text-align: center;
+  font-family: "Product Sans", sans-serif !important;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.footer span {
+  color: red;
+}
+
+.content {
+  margin: auto;
+  padding: 0.5rem 5rem;
+  line-height: 0.8rem;
+}
+
+.content h1 {
+  font-family: "Product Sans", sans-serif;
+  text-align: left;
+  line-height: 5rem;
+}
+
+.content h2 {
+  font-family: "Work Sans Medium", sans-serif;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.content h3 {
+  font-family: "Work Sans", sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.content h4 {
+  font-family: "Work Sans", sans-serif;
+  font-weight: normal;
+  font-size: 0.75rem;
+  line-height: 0.2rem;
+}
+
+.contact {
+  display: flex;
+  gap: 0.5rem;
+  line-height: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.social {
+  padding-top: 1rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.image {
+  margin: auto 0;
+  height: 25rem;
+  width: 25rem;
+}
+
+@media (max-width: 768px) {
+  .newfooter {
+    flex-direction: column;
+    margin: 0 16px;
+    align-items: flex-start;
   }
 
   .content {
-    margin: auto;
-    padding: 0.5rem 5rem;
-    line-height: 0.8rem;
+    padding: 2rem 0;
+    line-height: 1.5;
   }
-  
-  .content h1 {
-    font-family: "Product Sans", sans-serif;
-    text-align: left;
-    line-height: 5rem;
-  }
-  
-  .content h2 {
-    font-family: "Work Sans Medium", sans-serif;
-    font-size: 1.5rem;
-    color: white;
-  }
-  
-  .content h3 {
-    font-family: "Work Sans", sans-serif;
-    font-weight: normal;
-    font-size: 1rem;
-  }
-  
-  .content h4 {
-    font-family: "Work Sans", sans-serif;
-    font-weight: normal;
-    font-size: 0.75rem;
-    line-height: 0.2rem;
-  }
-  
-  .contact {
-    display: flex;
-    gap: 0.5rem;
-    line-height: 0.5rem;
-  }
-  
-  .social {
-    padding-top: 2rem;
-    display: flex;
-    gap: 3.5rem;
-  }
-  
-  .image {
-    margin: auto 0;
-    height: 25rem;
-    width: 25rem;
-  }
-  
-  @media (max-width: 760px) {
-    .newfooter {
-      display: block;
-      min-height: min-content;
-    }
-  
-    .content {
-      padding: 2rem 1rem;
-      padding-bottom: 0;
-    }
-  
-    .content h1 {
-      font-size: 2.5rem;
-      line-height: normal;
-    }
-  
-    .content h2 {
-      line-height: normal;
-    }
 
-    .footerMap p {
-      margin: auto;
-      margin-bottom: 1rem;
-    }
-  
-    .social {
-      margin: auto;
-      height: auto;
-      width: 75vw;
-      padding: 1.5rem 0;
-    }
-  
-    .image {
-      height: 0;
-      margin: auto;
-      width: 0;
-      float: top;
-    }
+  .content h1 {
+    font-size: 2.5rem;
+    line-height: normal;
   }
+
+  .content h2 {
+    line-height: normal;
+  }
+
+  .footerMap {
+    margin-right: 0;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  
+  .mapContainer {
+    width: 100%;
+  }
+
+  .iframeMap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footerMap p {
+    margin-bottom: 1rem;
+  }
+
+  .social {
+    padding: 1.5rem 0;
+    width: 100%;
+    gap: 1.5rem;
+  }
+
+  .image {
+    display: none;
+  }
+}

@@ -51,8 +51,23 @@ export default function BookingPage() {
   }, []);
 
   useEffect(() => {
+    // Client-side check for existing booking
+    const checkExistingBooking = async () => {
+      if (status === "authenticated") {
+        try {
+          const res = await fetch('/api/booking/user-booking');
+          if (res.ok) {
+            router.push('/ticket');
+          }
+        } catch (err) {
+          console.error('Error checking user booking:', err);
+        }
+      }
+    };
+
+    checkExistingBooking();
     fetchBookings();
-  }, []);
+  }, [status, router]);
 
   const fetchBookings = async () => {
     try {
@@ -100,8 +115,10 @@ export default function BookingPage() {
       if (!res.ok) throw new Error(data.message || 'Booking failed');
       
       toast.success('🎉 Booking saved!');
-      fetchBookings();
-      setSelectedSeat(null);
+      // Redirect to ticket page after brief delay to show toast
+      setTimeout(() => {
+        router.push('/ticket');
+      }, 1500);
     } catch (err) {
       toast.error(err.message);
     }
