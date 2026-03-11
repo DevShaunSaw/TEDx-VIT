@@ -1,5 +1,5 @@
-import connectMongo from "../lib/mongodb";
-import TempRegistration from "../models/Booking";
+import dbConnect from '../../lib/mongodb';
+import Booking from "../../models/Booking";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
     await connectMongo();
 
-    const existing = await TempRegistration.findOne({
+    const existing = await Booking.findOne({
       email: email.toLowerCase().trim(),
     });
 
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
       });
     }
 
-    await TempRegistration.create({
+    await Booking.create({
       fullName: fullName.trim(),
       phoneNumber: cleanedPhone,
       email: email.toLowerCase().trim(),
