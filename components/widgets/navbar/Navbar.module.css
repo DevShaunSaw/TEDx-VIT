@@ -1,3 +1,4 @@
+/* ── Desktop Navbar ─────────────────────────────────────────── */
 .nav {
   display: flex;
   align-items: center;
@@ -11,6 +12,7 @@
   z-index: 9999;
   box-shadow: 5px 5px 15px rgb(0 0 0 / 15%);
   transition: 0.2s linear;
+  box-sizing: border-box;
 }
 
 .hidden {
@@ -19,8 +21,9 @@
 }
 
 .logo {
-  width: 100%;
-
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .navright {
@@ -29,8 +32,10 @@
   align-items: center;
   margin-top: 0;
   margin-bottom: 0;
-  padding-right: 3rem;
-  flex-wrap: wrap;
+  padding-right: 0;
+  flex-wrap: nowrap;
+  gap: 0;
+  list-style: none;
 }
 
 .navitem {
@@ -45,9 +50,6 @@
 
 .item:hover {
   color: var(--red);
-  /*text-decoration: underline;
-  text-underline-offset: 1.5rem;
-  text-decoration-thickness: 0.25rem;*/
   cursor: pointer;
   transition: 0.3s;
 }
@@ -57,34 +59,258 @@
   transition: 0.3s;
 }
 
+/* Auth button wrapper — desktop */
+.authDesktop {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
 
+/* ── Hamburger button (hidden on desktop) ───────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(200, 16, 46, 0.35);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 6px;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.hamburger:hover {
+  background: rgba(200, 16, 46, 0.12);
+  border-color: rgba(200, 16, 46, 0.6);
+}
+
+.hamburgerLine {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+
+/* ── Backdrop ───────────────────────────────────────────────── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+}
+
+/* ── Mobile Drawer ──────────────────────────────────────────── */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(320px, 85vw);
+  background: #0a0101;
+  border-left: 1px solid rgba(200, 16, 46, 0.2);
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+}
+
+/* Close (×) button */
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: rgba(200, 16, 46, 0.15);
+  border-color: rgba(200, 16, 46, 0.4);
+}
+
+/* Logo inside drawer */
+.drawerLogo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+/* Divider */
+.drawerDivider {
+  height: 1px;
+  background: rgba(200, 16, 46, 0.18);
+  margin: 0.75rem 0;
+}
+
+/* Nav links inside drawer */
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.drawerLink {
+  display: block;
+  padding: 0.85rem 1rem;
+  color: rgba(235, 195, 195, 0.9);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.drawerLink:hover {
+  background: rgba(200, 16, 46, 0.1);
+  color: #fff;
+}
+
+/* Auth section inside drawer */
+.drawerAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+/* Logged-in profile row */
+.drawerProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  margin-bottom: 0.25rem;
+}
+
+.drawerProfileName {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(235, 195, 195, 0.95);
+}
+
+.drawerProfileEmail {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(175, 100, 100, 0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 180px;
+}
+
+/* Generic CTA row button inside drawer */
+.drawerAuthBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(210, 145, 145, 0.9);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.drawerAuthBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Logout button variant */
+.drawerLogout {
+  color: #C8102E;
+  border-color: rgba(200, 16, 46, 0.2);
+}
+
+.drawerLogout:hover {
+  background: rgba(200, 16, 46, 0.1);
+  border-color: rgba(200, 16, 46, 0.4);
+}
+
+/* Sign-up button in drawer */
+.drawerSignupBtn {
+  display: block;
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 40px;
+  border: 2px solid var(--red);
+  background: var(--dark);
+  color: #fff;
+  font-family: 'Product Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.drawerSignupBtn:hover {
+  background: rgba(200, 16, 46, 0.15);
+  box-shadow: 0 0 20px rgba(200, 16, 46, 0.3);
+}
+
+/* ── Responsive breakpoints ─────────────────────────────────── */
+
+/* 1150px — tighten spacing */
 @media (max-width: 1150px) {
-  .navright {
-    font-size:12px;
-    padding-right: 1.5rem;
-  }
-
   .nav {
     padding: 0.5rem 2rem;
-    position: relative;
-    margin-bottom: 0;
   }
 
-  .item{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  .navright {
+    font-size: 13px;
   }
 
-  .logo {
-    width: 50vw;
+  .item {
+    padding: 0.75rem 0.5rem;
   }
 }
 
+/* 768px — switch to hamburger */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.75rem 1.25rem;
+  }
 
-@media (max-width: 1000px) {
-  
-
+  /* Hide desktop nav links and auth button */
   .navright {
-    display: none; /* Hide the navright items when the drawer is visible */
+    display: none;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: flex;
   }
 }
