@@ -1,7 +1,13 @@
-export default async function handler(req, res) {
+import dbConnect from '../../../lib/mongodb';
 
-  console.log("METHOD:", req.method);
-  console.log("BODY:", req.body);
+export const config = {
+  api: {
+    bodyParser: true,
+  },
+};
+
+export default async function handler(req, res) {
+  await dbConnect();
 
   if (req.method === "GET") {
     return res.status(200).json({ message: "Webhook endpoint working" });
@@ -12,14 +18,31 @@ export default async function handler(req, res) {
   }
 
   try {
-    const email = req.body.attendee?.email;
+    const body = req.body;
 
-    console.log("EMAIL:", email);
+    const email = body?.attendee?.email;
 
-    res.json({ success: true });
+    if (!email) {
+      return res.status(400).json({
+        error: "Email not found in webhook payload",
+      });
+    }
 
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error" });
+    await db.collection("users").updateOne(
+      { email },
+      { $set: { isConfirmed: true } }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Webhook processed successfully",
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Webhook failed",
+    });
   }
 }
