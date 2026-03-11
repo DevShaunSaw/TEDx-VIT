@@ -1,0 +1,262 @@
+/* ===========================
+   Page wrapper
+=========================== */
+.ticketContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* Push content below the fixed navbar (~70px) and above the footer */
+  padding: 100px 20px 60px;
+  background-color: #0f0f0f;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   Ticket shell — desktop: row
+=========================== */
+.ticket {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 820px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 20px;
+  overflow: visible; /* keep visible so notch circles show */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===========================
+   Left panel (details)
+=========================== */
+.ticketLeft {
+  flex: 2;
+  padding: 40px;
+  border-right: 2px dashed rgba(255, 255, 255, 0.2);
+  position: relative;
+  min-width: 0; /* prevents flex blowout on long text */
+}
+
+/* Notch circles on the dashed divider — desktop (vertical divider) */
+.ticketLeft::before,
+.ticketLeft::after {
+  content: '';
+  position: absolute;
+  right: -11px;
+  width: 22px;
+  height: 22px;
+  background-color: #0f0f0f;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.ticketLeft::before { top: -11px; }
+.ticketLeft::after  { bottom: -11px; }
+
+/* ===========================
+   Right panel (QR code)
+=========================== */
+.ticketRight {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  min-width: 0;
+}
+
+/* ===========================
+   Event title
+=========================== */
+.eventTitle {
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-weight: 800;
+  margin: 0 0 28px 0;
+  background: red;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* ===========================
+   Details grid
+=========================== */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 16px;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/* ===========================
+   QR code
+=========================== */
+.qrContainer {
+  background: white;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrLabel {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ===========================
+   Loading / error states
+=========================== */
+.loading,
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 70px; /* offset for fixed navbar */
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.8);
+  gap: 16px;
+  background-color: #0f0f0f;
+}
+
+/* ===========================
+   Tablet  ≤ 768 px
+   Ticket becomes a column (details on top, QR below)
+=========================== */
+@media (max-width: 768px) {
+  .ticketContainer {
+    /* Navbar is shorter on mobile (~56px), keep comfortable padding */
+    padding: 80px 16px 48px;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  .ticket {
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Switch divider from vertical to horizontal */
+  .ticketLeft {
+    padding: 30px;
+    border-right: none;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
+  }
+
+  /* Reposition notch circles to straddle the horizontal divider */
+  .ticketLeft::before {
+    right: auto;
+    left: -11px;
+    top: auto;
+    bottom: -11px;
+  }
+
+  .ticketLeft::after {
+    left: auto;
+    right: -11px;
+    top: auto;
+    bottom: -11px;
+  }
+
+  .ticketRight {
+    padding: 28px;
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+  }
+
+  .loading,
+  .error {
+    padding-top: 80px;
+  }
+}
+
+/* ===========================
+   Mobile  ≤ 480 px
+   Single-column details grid, smaller QR code
+=========================== */
+@media (max-width: 480px) {
+  .ticketContainer {
+    padding: 76px 12px 40px;
+    align-items: flex-start;
+  }
+
+  .ticket {
+    overflow: visible;
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .ticketLeft {
+    padding: 24px 20px;
+  }
+
+  .ticketRight {
+    padding: 24px 20px;
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr; /* stack all details vertically */
+    gap: 14px;
+  }
+
+  .eventTitle {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .value {
+    font-size: 1rem;
+  }
+
+  .qrContainer {
+    padding: 12px;
+  }
+
+  .loading,
+  .error {
+    padding-top: 76px;
+    font-size: 1.1rem;
+  }
+}

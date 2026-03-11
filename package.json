@@ -25,6 +25,7 @@
     "react-dom": "^19.2.4",
     "react-hot-toast": "^2.6.0",
     "react-image-gallery": "^1.4.0",
+    "react-qr-code": "^2.0.18",
     "react-scroll": "^1.9.3",
     "tls": "^0.0.1"
   },

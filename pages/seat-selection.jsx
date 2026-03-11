@@ -6,6 +6,43 @@ import toast from 'react-hot-toast';
 import styles from "../styles/seat.module.css";
 import Navbar from '../components/widgets/navbar/Navbar';
 import MiniFooter from '../components/widgets/minifooter/MiniFooter';
+import dbConnect from '../lib/mongodb';
+import Booking from '../models/Booking';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "./api/auth/[...nextauth]";
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return { props: {} };
+  }
+
+  try {
+    await dbConnect();
+    const userId = session.user.id;
+    const userEmail = session.user.email;
+
+    // Check if booking already exists for this user
+    let existingBooking = await Booking.findOne({ user_id: userId });
+    if (!existingBooking && userEmail) {
+      existingBooking = await Booking.findOne({ email: userEmail });
+    }
+
+    if (existingBooking) {
+      return {
+        redirect: {
+          destination: '/ticket',
+          permanent: false,
+        },
+      };
+    }
+  } catch (err) {
+    console.error('Error checking existing booking:', err);
+  }
+
+  return { props: {} };
+}
 
 export default function BookingPage() {
   const router = useRouter();
@@ -27,8 +64,23 @@ export default function BookingPage() {
   }, []);
 
   useEffect(() => {
+    // Client-side check for existing booking
+    const checkExistingBooking = async () => {
+      if (status === "authenticated") {
+        try {
+          const res = await fetch('/api/booking/user-booking');
+          if (res.ok) {
+            router.push('/ticket');
+          }
+        } catch (err) {
+          console.error('Error checking user booking:', err);
+        }
+      }
+    };
+
+    checkExistingBooking();
     fetchBookings();
-  }, []);
+  }, [status, router]);
 
   const fetchBookings = async () => {
     try {
@@ -76,8 +128,10 @@ export default function BookingPage() {
       if (!res.ok) throw new Error(data.message || 'Booking failed');
       
       toast.success('🎉 Booking saved!');
-      fetchBookings();
-      setSelectedSeat(null);
+      // Redirect to ticket page after brief delay to show toast
+      setTimeout(() => {
+        router.push('/ticket');
+      }, 1500);
     } catch (err) {
       toast.error(err.message);
     }
