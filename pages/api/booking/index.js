@@ -1,5 +1,5 @@
-import dbConnect from '../../lib/mongodb';
-import Booking from '../../models/Booking';
+import dbConnect from '../../../lib/mongodb';
+import Booking from '../../../models/Booking';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 
@@ -36,6 +36,7 @@ export default async function handler(req, res) {
       const { movie, seat_no, full_name, email, phone } = req.body;
 
       if (!movie || !seat_no) {
+        console.error('Missing fields: movie=', movie, 'seat_no=', seat_no);
         return res.status(400).json({ message: 'Missing fields' });
       }
 
@@ -43,12 +44,14 @@ export default async function handler(req, res) {
       const userId = session.user.id;
       const existingUserBooking = await Booking.findOne({ user_id: userId, movie });
       if (existingUserBooking) {
+        console.error('User already booked');
         return res.status(400).json({ message: 'You have already booked a seat for this movie' });
       }
 
       // Check if seat is already taken
       const existingSeatBooking = await Booking.findOne({ movie, seat_no });
       if (existingSeatBooking) {
+        console.error('Seat already taken');
         return res.status(400).json({ message: 'Seat already taken' });
       }
 

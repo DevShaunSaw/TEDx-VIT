@@ -1,5 +1,5 @@
-import connectDB from "../../lib/mongodb";
-import User from "../../models/UserModel";
+import connectDB from "../../../lib/mongodb";
+import User from "../../../models/UserModel";
 import bcrypt from "bcryptjs";
 
 export default async function handler(req, res) {
