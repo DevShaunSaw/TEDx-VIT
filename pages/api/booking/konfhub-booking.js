@@ -1,51 +1,52 @@
-import { NextResponse } from "next/server";
 import clientPromise from "../../../lib/mongodb";
 
-export async function POST(req) {
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
+
   try {
-    const body = await req.json();
+    const body = req.body;
 
     const email = body.attendee?.email;
 
     if (!email) {
-      return NextResponse.json(
-        { error: "Email not found in webhook payload" },
-        { status: 400 }
-      );
+      return res.status(400).json({
+        error: "Email not found in webhook payload",
+      });
     }
 
     const client = await clientPromise;
     const db = client.db("event");
 
-    const user = await db.collection("users").findOne({ email: email });
+    const user = await db.collection("users").findOne({ email });
 
     if (!user) {
-      return NextResponse.json({
+      return res.json({
         success: false,
         message: "User not found in database",
       });
     }
 
     await db.collection("users").updateOne(
-      { email: email },
+      { email },
       {
         $set: {
-          isConfirmed: true
+          isConfirmed: true,
         },
       }
     );
 
-    return NextResponse.json({
+    return res.json({
       success: true,
       message: "User updated successfully",
     });
-
   } catch (error) {
     console.error("Webhook error:", error);
 
-    return NextResponse.json(
-      { success: false, error: "Internal server error" },
-      { status: 500 }
-    );
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
   }
 }
