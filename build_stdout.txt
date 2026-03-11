@@ -1,0 +1,11 @@
+﻿
+> db@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Running TypeScript ...
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 3.6s
+  Collecting page data using 7 workers ...

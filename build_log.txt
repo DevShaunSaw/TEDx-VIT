@@ -1,0 +1,62 @@
+﻿
+> db@0.1.0 build
+> next build
+
+node.exe : ÔÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo              : NotSpecified: (ÔÜá War    ning: Ne...not be correc    t.:String) [], RemoteExc    eption
+    + FullyQualifiedErrorId     : NativeCommandError
+ 
+ We detected multiple lockfiles and selected the directory of D:\Desktop\tedx\actual\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * D:\Desktop\tedx\actual\TEDx-VIT\package-lock.json
+
+Ôû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Running TypeScript ...
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 6.8s
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/17) ...
+  Generating static pages using 7 workers (4/17) 
+  Generating static pages using 7 workers (8/17) 
+  Generating static pages using 7 workers (12/17) 
+Ô£ô Generating static pages using 7 workers (17/17) in 327.0ms
+  Finalizing page optimization ...
+
+Route (pages)
+Ôöî Ôùï /
+Ôö£   /_app
+Ôö£ Ôùï /2018
+Ôö£ Ôùï /2019
+Ôö£ Ôùï /2021
+Ôö£ Ôùï /2024
+Ôö£ Ôùï /2025
+Ôö£ Ôùï /2026
+Ôö£ Ôùï /404
+Ôö£ Ôùï /About
+Ôö£ Ôùï /AboutTEDxVIT
+Ôö£ ãÆ /api/auth/[...nextauth]
+Ôö£ ãÆ /api/auth/register-user
+Ôö£ ãÆ /api/booking
+Ôö£ ãÆ /api/register
+Ôö£ ãÆ /api/test
+Ôö£ Ôùï /auth/login
+Ôö£ Ôùï /auth/signup
+Ôö£ Ôùï /not-found
+Ôö£ Ôùï /PreviousEvents
+Ôö£ Ôùï /seat-selection
+Ôöö Ôùï /ticket
+
+ãÆ Proxy (Middleware)
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+
+

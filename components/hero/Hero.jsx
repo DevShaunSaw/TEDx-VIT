@@ -16,7 +16,7 @@ const Hero = () => {
           />
           <Button
           content="Get Tickets"
-          link="/get-ticket"
+          link="/seat-selection"
           target='_self'
           />
         </div>
