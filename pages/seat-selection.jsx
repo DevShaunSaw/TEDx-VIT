@@ -168,25 +168,6 @@ export default function BookingPage() {
       <Navbar />
       <div className={styles['booking-container']}>
 
-      <div className={styles['movie-details']}>
-        <img src="/assets/ford_poster.jpg" alt="Ford v Ferrari" className={styles['movie-poster']} />
-        <h2 className={styles['movie-title']}>Ford v Ferrari</h2>
-        <div className={styles['movie-info']}>
-          <div className={styles['info-item']}>
-            <i className="far fa-calendar-alt"></i>
-            <span>2019</span>
-          </div>
-          <div className={styles['info-item']}>
-            <i className="far fa-clock"></i>
-            <span>2h 32m</span>
-          </div>
-        </div>
-        <p className={styles['movie-description']}>
-          American car designer Carroll Shelby and driver Ken Miles battle corporate interference 
-          and the laws of physics to build a revolutionary race car for Ford in order to defeat Ferrari at the 24 Hours of Le Mans in 1966.
-        </p>
-      </div>
-
       <div className={styles['seat-selection']}>
         <div className={styles['screen-container']}>
           <div className={styles['screen-label']}>Screen This Way</div>
