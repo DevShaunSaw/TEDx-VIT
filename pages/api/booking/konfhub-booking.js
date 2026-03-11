@@ -28,7 +28,8 @@ export default async function handler(req, res) {
 
   try {
 
-    const email = req.body?.attendee?.email;
+    const email =
+      req.body?.Data?.["Attendee Details"]?.["Email Address"];
 
     console.log("Webhook payload:", req.body);
     console.log("Webhook email:", email);
@@ -39,7 +40,6 @@ export default async function handler(req, res) {
       });
     }
 
-    // Find booking by email
     const booking = await Booking.findOne({ email });
 
     if (!booking) {
@@ -51,9 +51,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // Update confirmation
     booking.isConfirmed = true;
-
     await booking.save();
 
     console.log("Booking confirmed for:", email);
