@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useSession } from "next-auth/react";
 import toast from 'react-hot-toast';
 import styles from "../styles/seat.module.css";
@@ -32,7 +32,7 @@ export default function BookingPage() {
 
   const fetchBookings = async () => {
     try {
-      const res = await fetch(`/api/booking?movie=${MOVIE_ID}`);
+      const res = await fetch(`/api/booking?movie=${MOVIE_ID}&t=${Date.now()}`);
       const data = await res.json();
       if (res.ok) {
         setOccupiedSeats(data.map(b => b.seat_no));
