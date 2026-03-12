@@ -1,9 +1,11 @@
 import { withAuth } from "next-auth/middleware";
 
-export default function middleware(req, event) {
-  return withAuth(req, event);
-}
+export default withAuth({
+  pages: {
+    signIn: "/auth/login",
+  },
+});
 
 export const config = {
-  matcher: ["/seat-selection", "/ticket"],
+  matcher: ["/seat-selection", "/get-ticket", "/ticket"],
 };

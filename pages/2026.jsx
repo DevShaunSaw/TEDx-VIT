@@ -3,7 +3,7 @@ import Navbar from '../components/widgets/navbar/Navbar'
 import Cards from '../components/speaker/Card'
 import styles from '../styles/2024.module.css'
 import Image from 'next/image'
-import { tedx2025 } from '../components/constants/constants'
+import { tedx2026 } from '../components/constants/constants'
 import MiniFooter from '../components/widgets/minifooter/MiniFooter'
 import Timeline from '../components/timeline/Timeline'
 
@@ -49,7 +49,7 @@ export default function Edition6 () {
             </div>
             <div className={styles.speakers}>
                 <div className={styles.cards}>
-                    {tedx2025.map((data, key) => (
+                    {tedx2026.map((data, key) => (
                     <div data-aos='flip-up' data-aos-delay='300'>
                         <Cards
                         name={data.name}
@@ -57,7 +57,7 @@ export default function Edition6 () {
                         img={data.img}
                         designation={data.designation}
                         talk={data.talk}
-                        type='View Talk'
+                        type='View Profile'
                         />
                     </div>
                     ))}

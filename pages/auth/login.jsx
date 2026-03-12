@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import Navbar from '../../components/widgets/navbar/Navbar'
 
 function Particles() {
   const canvasRef = useRef(null);
@@ -52,15 +53,18 @@ function Particles() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 0,
-        pointerEvents: "none",
-      }}
-    />
+    <>
+      <Navbar />
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      />
+    </>
   );
 }
 

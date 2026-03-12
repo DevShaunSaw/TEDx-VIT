@@ -602,6 +602,6 @@
     border-radius: 3px;
 }
 
-.available-sample { background-color: #535252; }
-.selected-sample { background-color: #09e539; }
-.occupied-sample { background-color: #bb1a38; }
+.available-sample { background-color: #800000; border: 2px solid #FF0000; }
+.selected-sample { background-color: #ff0000; }
+.occupied-sample { background-color: #FFBFBF; }

@@ -20,6 +20,8 @@ export default function HandleBooking() {
               console.error('Error checking user booking:', err);
             }
           }
+          else
+            router.push('/auth/login')
         };
     
         checkExistingBooking()
