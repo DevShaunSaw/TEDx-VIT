@@ -40,7 +40,9 @@ export default async function handler(req, res) {
       });
     }
 
-    const booking = await Booking.findOne({ email });
+    await Booking.findOneAndUpdate({ email }, {
+      $unset: { expiresAt: "" }
+    });
 
     if (!booking) {
       console.log("Booking not found for:", email);

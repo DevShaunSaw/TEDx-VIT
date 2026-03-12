@@ -21,18 +21,20 @@ const BookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  isConfirmed: {
-    type: Boolean,
-    default: false
-  },
   hasAttended: {
     type: Boolean,
     default: false
+  },
+  expiresAt: {
+    type: Date,
+    default: () => new Date(Date.now() + 15 * 60 * 1000),
+    index: { expires: 0 }
   }
 }, {
   timestamps: true,
 });
 
-BookingSchema.index({ user_id: 1 }, { unique: true });
+BookingSchema.index({ user_id: 1 }, { unique: true })
+BookingSchema.index({ seat_no: 1 }, { unique: true })
 
 export default mongoose.models.Booking || mongoose.model('Booking', BookingSchema);
