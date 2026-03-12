@@ -39,8 +39,6 @@ export default async function handler(req, res) {
         return res.status(404).json({ message: 'No booking found' });
       }
 
-      console.log('Booking found:', booking._id);
-
       return res.status(200).json(booking);
     } catch (error) {
       console.error('Fetch booking error:', error);

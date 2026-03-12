@@ -7,7 +7,6 @@ const Hero = () => {
     <div className='hero' id='hero'>
       <div className={styles.text} data-aos='zoom-in' data-aos-delay='10'>
         <img src='/logo.png'/>
-        <p className='event-date' style={{ color: '#ff0000' }}>28th March, 2026</p>
         <div className={styles.button}>
           <Button
           content="TEDxVIT 2026"
@@ -16,7 +15,7 @@ const Hero = () => {
           />
           <Button
           content="Get Tickets"
-          link="/seat-selection"
+          link="/handle-booking"
           target='_self'
           />
         </div>
@@ -24,7 +23,7 @@ const Hero = () => {
 
       <div className={styles.img} data-aos='zoom-in' data-aos-delay='10'>
         <Image
-          src='/coming-soon.png'
+          src='/2026/logo-info.png'
           layout='fill'
           objectFit='contain'
           alt='TEDx VIT'

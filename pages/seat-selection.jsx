@@ -50,25 +50,6 @@ export default function BookingPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    // Client-side check for existing booking
-    const checkExistingBooking = async () => {
-      if (status === "authenticated") {
-        try {
-          const res = await fetch('/api/booking/user-booking');
-          if (res.ok) {
-            router.push('/ticket');
-          }
-        } catch (err) {
-          console.error('Error checking user booking:', err);
-        }
-      }
-    };
-
-    checkExistingBooking();
-    fetchBookings();
-  }, [status, router]);
-
   const fetchBookings = async () => {
     try {
       const res = await fetch(`/api/booking`);
@@ -81,7 +62,11 @@ export default function BookingPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    fetchBookings();
+  }, [status, router]);
 
   const handleBooking = async () => {
     if (!selectedSeat) {

@@ -79,8 +79,7 @@ export default function GetTicket() {
   // Create QR code data
   const qrData = JSON.stringify({
     uid: booking.user_id,
-    seat: booking.seat_no,
-    event: booking.movie
+    seat: booking.seat_no
   })
 
   return (

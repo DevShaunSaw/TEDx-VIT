@@ -29,7 +29,7 @@ export default function Edition6 () {
                   Brochure
                 </button>
                 </a> */}
-                <Link href='/seat-selection'>
+                <Link href='/handle-booking'>
                 <button className={styles.yearlocation}>
                     Get Tickets
                 </button>
