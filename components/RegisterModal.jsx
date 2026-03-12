@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 function InputField({
   label,
@@ -294,7 +294,7 @@ export default function RegisterModal({ open, seatValue, onClose }) {
                 margin: "0 0 10px",
               }}
             >
-              You&apos;re registered.
+              Your Seat is Reserved!
             </h2>
             <p
               style={{
@@ -304,11 +304,10 @@ export default function RegisterModal({ open, seatValue, onClose }) {
                 margin: "0 0 6px",
               }}
             >
-              See you on{" "}
+              To confirm your booking, please pay on the next page with the same {" "}
               <span style={{ color: "#E62B1E", fontWeight: 600 }}>
-                28<sup>th</sup> March 2026
+                Email Address
               </span>{" "}
-              at VIT Vellore.
             </p>
             <p
               style={{ fontSize: "12px", color: "#444", marginBottom: "32px" }}

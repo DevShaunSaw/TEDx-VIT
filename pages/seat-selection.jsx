@@ -71,7 +71,7 @@ export default function BookingPage() {
 
   const fetchBookings = async () => {
     try {
-      const res = await fetch(`/api/booking?movie=${MOVIE_ID}&t=${Date.now()}`);
+      const res = await fetch(`/api/booking`);
       const data = await res.json();
       if (res.ok) {
         setOccupiedSeats(data.map(b => b.seat_no));

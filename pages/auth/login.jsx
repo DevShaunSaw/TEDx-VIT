@@ -325,29 +325,6 @@ export default function LoginPage() {
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
 
-          {/* Forgot password */}
-          <div
-            style={{
-              textAlign: "right",
-              marginTop: "-8px",
-              marginBottom: "24px",
-            }}
-          >
-            <span
-              onMouseEnter={() => setHoverForgot(true)}
-              onMouseLeave={() => setHoverForgot(false)}
-              style={{
-                fontSize: "12px",
-                color: hoverForgot ? "#E62B1E" : "#555",
-                cursor: "pointer",
-                transition: "color 0.2s ease",
-                letterSpacing: "0.03em",
-              }}
-            >
-              Forgot password?
-            </span>
-          </div>
-
           {/* Error message */}
           {error && (
             <div

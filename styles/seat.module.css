@@ -498,6 +498,8 @@
   gap: 8px;
   margin: 0 auto;
   min-width: 800px;
+  justify-items: center;
+  align-items: center;
 }
 
 .seat {
@@ -505,8 +507,9 @@
   height: 30px;
   border: none;
   border-radius: 5px;
-  background-color: #535252;
+  background-color: #800000;
   color: white;
+  border: 2px solid #FF0000;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
@@ -516,11 +519,13 @@
 }
 
 .seat.selected {
-  background-color: #09e51f;
+  background-color: #ff0000;
 }
 
 .seat.occupied {
-  background-color: #bb1a38;
+  background-color: #FFBFBF;
+  color: #ff0000;
+  border: none;
   cursor: not-allowed;
 }
 
@@ -536,7 +541,7 @@
   font-weight: bold;
   color: #ccc;
   padding: 5px;
-  min-width: 30px;
+  width: 30px;
 }
 
 .booking-summary {

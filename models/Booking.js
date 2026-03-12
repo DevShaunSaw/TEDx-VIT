@@ -17,10 +17,6 @@ const BookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  movie: {
-    type: String,
-    required: true,
-  },
   seat_no: {
     type: String,
     required: true,
@@ -37,7 +33,6 @@ const BookingSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Ensure unique booking per user per movie if needed
-BookingSchema.index({ user_id: 1, movie: 1 }, { unique: true });
+BookingSchema.index({ user_id: 1 }, { unique: true });
 
 export default mongoose.models.Booking || mongoose.model('Booking', BookingSchema);
