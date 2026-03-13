@@ -124,6 +124,7 @@ export default function SignupPage() {
   const [success, setSuccess] = useState("");
   const router = useRouter()
   const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get("callbackUrl") || "/"
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 80);
@@ -160,10 +161,9 @@ export default function SignupPage() {
           password: form.password,
         });
         if (signInRes?.ok) {
-          const callbackUrl = searchParams.get("callbackUrl") || "/"
-          router.push(callbackUrl)
+          router.replace(callbackUrl)
         } else {
-          router.push("/auth/login");
+          router.replace(`/auth/login?callbackUrl=${encodeURIComponent(callbackUrl)}`)
         }
       }
     } catch {
@@ -174,9 +174,8 @@ export default function SignupPage() {
   }
 
   async function handleGoogle() {
-    const callbackUrl = searchParams.get("callbackUrl") || "/"
-    setError("");
-    await signIn("google", { callbackUrl: callbackUrl });
+    setError("")
+    await signIn("google", { callbackUrl })
   }
 
   return (
@@ -521,7 +520,7 @@ export default function SignupPage() {
           >
             Already have an account?{" "}
             <Link
-              href="/auth/login"
+              href={`/auth/login?callbackUrl=${encodeURIComponent(callbackUrl)}`}
               style={{
                 color: "#E62B1E",
                 textDecoration: "none",

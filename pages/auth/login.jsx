@@ -126,6 +126,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const router = useRouter()
   const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get("callbackUrl") || "/"
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 80);
@@ -134,29 +135,32 @@ export default function LoginPage() {
   async function handleLogin(e) {
     e.preventDefault();
     setError("");
+
     if (!form.email || !form.password) {
       setError("Please enter your email and password.");
       return;
     }
+
     setLoading(true);
+
     const res = await signIn("credentials", {
       redirect: false,
       email: form.email,
       password: form.password,
     });
+
     setLoading(false);
+
     if (res?.error) {
       setError(res.error);
     } else {
-      const callbackUrl = searchParams.get("callbackUrl") || "/"
-      router.push(callbackUrl)
+      router.replace(callbackUrl);
     }
   }
 
   async function handleGoogle() {
-    const callbackUrl = searchParams.get("callbackUrl") || "/"
     setError("");
-    await signIn("google", { callbackUrl: callbackUrl });
+    await signIn("google", { callbackUrl });
   }
 
   return (
@@ -473,7 +477,7 @@ export default function LoginPage() {
         >
           New here?{" "}
           <Link
-            href="/auth/signup"
+            href={`/auth/signup?callbackUrl=${encodeURIComponent(callbackUrl)}`}
             style={{
               color: "#E62B1E",
               textDecoration: "none",
