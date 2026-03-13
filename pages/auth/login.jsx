@@ -132,13 +132,13 @@ export default function LoginPage() {
     setTimeout(() => setMounted(true), 80);
   }, []);
 
+  const callbackUrl = searchParams.get("callbackUrl") || "/"
+
   useEffect(() => {
   if (status === "authenticated") {
     router.replace(callbackUrl);
   }
   }, [status, callbackUrl, router])
-
-    const callbackUrl = searchParams.get("callbackUrl") || "/"
 
   async function handleLogin(e) {
     e.preventDefault();
