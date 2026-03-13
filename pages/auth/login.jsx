@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation"
 import Navbar from '../../components/widgets/navbar/Navbar'
 
@@ -126,11 +126,19 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const router = useRouter()
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callbackUrl") || "/"
+  const { status } = useSession()
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 80);
   }, []);
+
+  useEffect(() => {
+  if (status === "authenticated") {
+    router.replace(callbackUrl);
+  }
+  }, [status, callbackUrl, router])
+
+    const callbackUrl = searchParams.get("callbackUrl") || "/"
 
   async function handleLogin(e) {
     e.preventDefault();
