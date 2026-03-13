@@ -31,6 +31,7 @@ export default function BookingPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [registerOpen, setRegisterOpen] = useState(false);
+  const VIP_ROWS = ['A','B']; // rows reserved for VIP
 
   const openModal = () => {
     if (!selectedSeat)
@@ -67,18 +68,22 @@ export default function BookingPage() {
   useEffect(() => {
     fetchBookings();
   }, [status]);
-  
+
   const renderSeats = () => {
     const seats = [];
     const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
-    
-    // Helper to render a row
+
     const renderRow = (rowLabel, cols) => {
       const row = [];
-        row.push(<div key={`${rowLabel}-label`} className={styles['row-label']}>{rowLabel}</div>);
+      row.push(
+        <div key={`${rowLabel}-label`} className={styles['row-label']}>
+          {rowLabel}
+        </div>
+      )
       for (let c = 1; c <= cols; c++) {
         const seatId = `${rowLabel}${c}`;
-        const isOccupied = occupiedSeats.includes(seatId);
+        const isVIP = VIP_ROWS.includes(rowLabel);
+        const isOccupied = occupiedSeats.includes(seatId) || isVIP;
         const isSelected = selectedSeat === seatId;
         row.push(
           <button
@@ -93,12 +98,10 @@ export default function BookingPage() {
       }
       return row;
     };
-
-    // Block 1: A-I
     rows.forEach(r => seats.push(...renderRow(r, 17)));
-
     seats.push(<div key="spacer1-0" className={styles['empty-cell']}></div>);
-    for (let i = 1; i <= 17; i++) seats.push(<div key={`spacer1-${i}`} className={styles['empty-cell']}></div>);
+    for (let i = 1; i <= 17; i++)
+      seats.push(<div key={`spacer1-${i}`} className={styles['empty-cell']}></div>);
 
     return seats;
   };
@@ -107,56 +110,57 @@ export default function BookingPage() {
     <>
       <Navbar />
       <div className={styles['booking-container']}>
-
-      <div className={styles['seat-selection']}>
-        <div className={styles['screen-container']}>
-          <div className={styles['screen-label']}>Stage This Way</div>
-          <div className={styles['theatre-screen']}></div>
-        </div>
-
-        <div className={styles['seats-container']}>
-          <div className={styles['seat-map']}>
-            {/* Column Headers */}
-            <div className={styles['row-label']}></div>
-            {Array.from({ length: 17 }, (_, i) => (
-              <div key={`col-${i + 1}`} className={styles['row-label']}>{i + 1}</div>
-            ))}
-            {renderSeats()}
+        <div className={styles['seat-selection']}>
+          <div className={styles['screen-container']}>
+            <div className={styles['screen-label']}>Stage This Way</div>
+            <div className={styles['theatre-screen']}></div>
+          </div>
+          <div className={styles['seats-container']}>
+            <div className={styles['seat-map']}>
+              <div className={styles['row-label']}></div>
+              {Array.from({ length: 17 }, (_, i) => (
+                <div key={`col-${i + 1}`} className={styles['row-label']}>
+                  {i + 1}
+                </div>
+              ))}
+              {renderSeats()}
+            </div>
+          </div>
+          <div className={styles['seat-info']}>
+            <div className={styles['seat-info-item']}>
+              <div className={`${styles['seat-sample']} ${styles['available-sample']}`}></div>
+              <span>Available</span>
+            </div>
+            <div className={styles['seat-info-item']}>
+              <div className={`${styles['seat-sample']} ${styles['selected-sample']}`}></div>
+              <span>Selected</span>
+            </div>
+            <div className={styles['seat-info-item']}>
+              <div className={`${styles['seat-sample']} ${styles['occupied-sample']}`}></div>
+              <span>Occupied</span>
+            </div>
+          </div>
+          <div className={styles['booking-summary']}>
+            <h3 className={styles['summary-title']}>Booking Summary</h3>
+            <div className={styles['selected-seats']}>
+              {selectedSeat ? `Selected: ${selectedSeat}` : 'No seats selected'}
+            </div>
+            <button
+              className={styles['confirm-btn']}
+              onClick={openModal}
+            >
+              Confirm Booking
+            </button>
           </div>
         </div>
-
-        <div className={styles['seat-info']}>
-          <div className={styles['seat-info-item']}>
-            <div className={`${styles['seat-sample']} ${styles['available-sample']}`}></div>
-            <span>Available</span>
-          </div>
-          <div className={styles['seat-info-item']}>
-            <div className={`${styles['seat-sample']} ${styles['selected-sample']}`}></div>
-            <span>Selected</span>
-          </div>
-          <div className={styles['seat-info-item']}>
-            <div className={`${styles['seat-sample']} ${styles['occupied-sample']}`}></div>
-            <span>Occupied</span>
-          </div>
-        </div>
-
-        <div className={styles['booking-summary']}>
-          <h3 className={styles['summary-title']}>Booking Summary</h3>
-          <div className={styles['selected-seats']}>
-            {selectedSeat ? `Selected: ${selectedSeat}` : 'No seats selected'}
-          </div>
-          <button className={styles['confirm-btn']} onClick={openModal}>
-            Confirm Booking
-          </button>
-        </div>
-      </div>
       </div>
       <MiniFooter />
       <RegisterModal
         open={registerOpen}
-        seatValue = {selectedSeat}
+        seatValue={selectedSeat}
         onClose={() => setRegisterOpen(false)}
       />
+
     </>
   );
 }
