@@ -134,37 +134,41 @@ export default function SignupPage() {
     e.preventDefault();
     setError("");
     setSuccess("");
+
     if (!form.name || !form.email || !form.password) {
       setError("All fields are required.");
       return;
     }
+
     if (form.password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
     }
+
     setLoading(true);
+
     try {
       const res = await fetch("/api/auth/register-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+
       const data = await res.json();
+
       if (!res.ok) {
         setError(data.error || "Registration failed");
       } else {
         setSuccess("Account created! Signing you in…");
-        // Auto sign-in after successful registration
-        const signInRes = await signIn("credentials", {
-          redirect: false,
-          email: form.email,
-          password: form.password,
-        });
-        if (signInRes?.ok) {
-          router.replace(callbackUrl)
-        } else {
-          router.replace(`/auth/login?callbackUrl=${encodeURIComponent(callbackUrl)}`)
-        }
+        const res = await signIn("credentials", {
+        redirect: false,
+        email: form.email,
+        password: form.password,
+        callbackUrl,
+      });
+      if (res?.url) {
+        router.replace(res.url);
+      }
       }
     } catch {
       setError("Something went wrong. Please try again.");

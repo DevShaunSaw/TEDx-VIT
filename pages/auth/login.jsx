@@ -147,7 +147,14 @@ export default function LoginPage() {
       redirect: false,
       email: form.email,
       password: form.password,
+      callbackUrl,
     });
+
+    if (res?.error) {
+      setError(res.error);
+    } else if (res?.url) {
+      router.replace(res.url);
+    }
 
     setLoading(false);
 
