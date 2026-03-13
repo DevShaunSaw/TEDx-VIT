@@ -7,5 +7,5 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ["/handle-booking", "/seat-selection", "/get-ticket", "/ticket"],
+  matcher: ["/seat-selection", "/get-ticket", "/ticket"],
 };
