@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation"
 import Navbar from '../../components/widgets/navbar/Navbar'
 
 function Particles() {
@@ -124,7 +124,8 @@ export default function LoginPage() {
   const [hoverForgot, setHoverForgot] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const router = useRouter();
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 80);
@@ -147,13 +148,15 @@ export default function LoginPage() {
     if (res?.error) {
       setError(res.error);
     } else {
-      router.push("/");
+      const callbackUrl = searchParams.get("callbackUrl") || "/"
+      router.push(callbackUrl)
     }
   }
 
   async function handleGoogle() {
+    const callbackUrl = searchParams.get("callbackUrl") || "/"
     setError("");
-    await signIn("google", { callbackUrl: "/" });
+    await signIn("google", { callbackUrl: callbackUrl });
   }
 
   return (
@@ -277,7 +280,7 @@ export default function LoginPage() {
         </div>
 
         {/* Heading */}
-        <div style={{ marginBottom: "36px" }}>
+        <div style={{ marginBottom: "12px" }}>
           <h1
             style={{
               fontSize: "28px",
@@ -288,9 +291,9 @@ export default function LoginPage() {
               lineHeight: 1.2,
             }}
           >
-            Welcome back.
+            Let's Log You Back In
           </h1>
-          <p
+          {/* <p
             style={{
               fontSize: "13px",
               color: "#555",
@@ -299,7 +302,7 @@ export default function LoginPage() {
             }}
           >
             Ideas that resonate beyond words
-          </p>
+          </p> */}
         </div>
 
         {/* Accent line */}

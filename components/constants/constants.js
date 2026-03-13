@@ -1,16 +1,16 @@
 export const tedx2026 = [
-  { name: 'Amrut Bang', img: '../2026/amrut-bang.jpg', designation: 'Program Director of the NIRMAN Youth Initiative', talk: 'https://youtu.be/Vpi1S0e9FcE?si=9E5iivvfZeA_af70' },
-  { name: 'Amrutha Joshi', img: '../2026/amrutha-joshi.jpg', designation: 'Polygot Educator, Writer and Independent Career Coach', talk: 'https://www.youtube.com/watch?v=WAbkXIpBeNY&pp=ygUXYW51cGFtYSBtaGF0cmUgdGVkeCB2aXTYBhU%3D'},
-  { name: 'Anand Shinde', img: '../2026/anand-shinde.jpg', designation: 'Wildlife Conservationist', talk: 'https://youtu.be/ZK30116Kh54?si=QQf-E2aCCGqDWEye' },
-  { name: 'Devendra Pai', img: '../2026/devendra-pai.jpg', designation: 'Consultant - Medical Oncology at Bombay Hospital', talk: 'https://youtu.be/rpbg-YeO6uc?si=r3LW293U0vg5H2Kf' },
-  { name: 'Dr. Nupur Kapoor Nerurkar', img: '../2026/nupur-kapoor.jpg', designation: 'World-Renowned Consultant Laryngologist', talk: 'https://youtu.be/KOSk4HWU8Wc?si=VMJVDxb5TeYanJgn' },
-  { name: 'Kavyal Sedani', img: '../2026/kavyal-sedani.jpg', designation: 'Description Here', talk: 'https://youtu.be/4OyVrLfKMUo?si=JhQtOR0RVaMuqHLH' },
-  { name: 'Komal Waghmare', img: '../2026/komal-waghmare.jpg', designation: 'ndian Deaflympian and Competitive Shooter', talk: 'https://youtu.be/yr-5gkYeD-I?si=ipcp0L9FUxkgqjUA' },
-  { name: 'Mohinee Singh', img: '../2026/mohinee-singh.jpg', designation: "Co-founder & CEO of CXO House", talk: 'https://youtu.be/BRpU87eLOJ0?si=sARUDslgOWPE7y1a' },
-  { name: 'Neelanshi Singh', img: '../2026/neelanshi-singh.jpg', designation: 'VIT Student and Former Child Actor', talk: 'https://youtu.be/jNewGsnjPEc?si=Zrd-z8v7F9ATAKfm' },
-  { name: 'Vinita Kaur Chigania', img: '../2026/vinita-chigania.jpg', designation: 'Architect Working at the Intersection of Rural Landscapes', talk: 'https://youtu.be/gTBCiF6Dd8w?si=VdXdANU7mhefjswl' },
-  { name: 'Suyog Bhandare', img: '../2026/suyog-bhandare.jpg', designation: 'VIT School of Management Student', talk: 'https://youtu.be/8_m-payd1ZY?si=2gDmu1Hb3Rb-_yip' },
-  { name: 'Shadraj Pancham', img: '../2026/shadraj-pancham.jpg', designation: 'VIT Musical Group', talk: 'https://youtu.be/8_m-payd1ZY?si=2gDmu1Hb3Rb-_yip' }
+  { name: 'Mugdha Chaphekar', img: '../2026/mugdha-chaphekar.png', designation: 'Actress', talk: 'https://www.instagram.com/mugdha.chaphekar/' },
+  { name: 'Amrut Bang', img: '../2026/amrut-bang.png', designation: 'Program Director - NIRMAN', talk: 'https://www.instagram.com/amrutbang/' },
+  { name: 'Amrutha Joshi', img: '../2026/amrutha-joshi.png', designation: 'Polyglot Educator Career Coach', talk: 'https://www.instagram.com/amruthalangs/'},
+  { name: 'Anand Shinde', img: '../2026/anand-shinde.png', designation: 'Trunk Call Wildlife Foundation', talk: 'https://www.instagram.com/sjnanand/' },
+  { name: 'Devendra Pai', img: '../2026/devendra-pai.png', designation: 'Youth Leader & Professor', talk: 'https://www.instagram.com/devendrapai/' },
+  { name: 'Dr. Nupur Kapoor', img: '../2026/nupur-kapoor.png', designation: 'Laryngologist & Voice Surgeon', talk: 'https://www.instagram.com/nupur_kapoor_nerurkar/' },
+  { name: 'Kavyal Sedani', img: '../2026/kavyal-sedani.png', designation: 'Influencer | Wellness Practictioner', talk: 'https://www.instagram.com/kavyalsedanni/' },
+  { name: 'Komal Waghmare', img: '../2026/komal-waghmare.png', designation: 'Deaf Olympian Champion', talk: 'https://www.instagram.com/komal.waghmare_/' },
+  { name: 'Mohinee Singh', img: '../2026/mohinee-singh.png', designation: "Co-founder & CEO at CXO Junction", talk: 'https://www.instagram.com/_mohineesingh/' },
+  { name: 'Neelanshi Singh', img: '../2026/neelanshi-singh.png', designation: 'VIT Student (Computer Engineering) and Actress', talk: 'https://www.instagram.com/neel.aaaaaaa/' },
+  { name: 'Vinita Kaur Chiragia', img: '../2026/vinita-chiragia.png', designation: 'Co-founder of Design Jatra', talk: 'https://www.instagram.com/design_jatra/' },
+  { name: 'Suyog Bhandare', img: '../2026/suyog-bhandare.png', designation: 'VIT (MMS) Student', talk: 'https://www.instagram.com/suyogaju123/' }
 ]
 
 export const tedx2025 = [

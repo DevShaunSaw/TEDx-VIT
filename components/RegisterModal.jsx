@@ -282,7 +282,7 @@ export default function RegisterModal({ open, seatValue, onClose }) {
                 color: "#E62B1E",
               }}
             >
-              ✓
+              !
             </div>
 
             <h2
@@ -294,7 +294,7 @@ export default function RegisterModal({ open, seatValue, onClose }) {
                 margin: "0 0 10px",
               }}
             >
-              Your Seat is Reserved!
+              Seat Selected | Payment Pending
             </h2>
             <p
               style={{
@@ -429,7 +429,7 @@ export default function RegisterModal({ open, seatValue, onClose }) {
                   letterSpacing: "0.02em",
                 }}
               >
-                28<sup>th</sup> March 2026 · Vidyalankar Institute of Technology
+                A Payment of ₹ 500 is required to book the ticket
               </p>
             </div>
 

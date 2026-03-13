@@ -243,7 +243,7 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
             ) : (
-              <Link href="/auth/signup" style={{ textDecoration: "none" }}>
+              <Link href="/auth/login" style={{ textDecoration: "none" }}>
                 <motion.button
                   style={{
                     backgroundColor: "var(--dark)",
@@ -267,7 +267,7 @@ const Navbar = () => {
                   whileTap={{ scale: 1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  Sign Up
+                  Sign In
                 </motion.button>
               </Link>
             )}

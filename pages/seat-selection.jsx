@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from 'react-hot-toast';
@@ -66,49 +66,8 @@ export default function BookingPage() {
 
   useEffect(() => {
     fetchBookings();
-  }, [status, router]);
-
-  const handleBooking = async () => {
-    if (!selectedSeat) {
-      toast.error('Please select a seat');
-      return;
-    }
-    
-    if (status === "unauthenticated") {
-      toast.error('Please login to book a ticket');
-      router.push('/auth/login');
-      return;
-    }
-
-    if (status === "loading") {
-      return;
-    }
-
-    try {
-      const res = await fetch('/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          movie: MOVIE_ID,
-          seat_no: selectedSeat,
-          full_name: session.user.name,
-          email: session.user.email,
-          phone: session.user.phone || 'N/A'
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Booking failed');
-      
-      toast.success('🎉 Booking saved!');
-      // Redirect to ticket page after brief delay to show toast
-      setTimeout(() => {
-        router.push('/ticket');
-      }, 1500);
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
-
+  }, [status]);
+  
   const renderSeats = () => {
     const seats = [];
     const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
@@ -138,53 +97,8 @@ export default function BookingPage() {
     // Block 1: A-I
     rows.forEach(r => seats.push(...renderRow(r, 17)));
 
-    // Spacer
     seats.push(<div key="spacer1-0" className={styles['empty-cell']}></div>);
     for (let i = 1; i <= 17; i++) seats.push(<div key={`spacer1-${i}`} className={styles['empty-cell']}></div>);
-
-    // Block 2: J-O (broken)
-    const middleRows = ['J', 'K', 'L', 'M', 'N', 'O'];
-    middleRows.forEach(r => {
-      seats.push(<div key={`${r}-label`} className={styles['row-label']}>{r}</div>);
-      for (let c = 1; c <= 5; c++) {
-        const seatId = `${r}${c}`;
-        const isOccupied = occupiedSeats.includes(seatId);
-        const isSelected = selectedSeat === seatId;
-        seats.push(
-          <button
-            key={seatId}
-            className={`${styles.seat} ${isOccupied ? styles.occupied : ''} ${isSelected ? styles.selected : ''}`}
-            disabled={isOccupied}
-            onClick={() => setSelectedSeat(seatId)}
-          >
-            {c}
-          </button>
-        );
-      }
-      for (let i = 0; i < 7; i++) seats.push(<div key={`${r}-empty-${i}`} className={styles['empty-cell']}></div>);
-      for (let c = 13; c <= 17; c++) {
-        const seatId = `${r}${c}`;
-        const isOccupied = occupiedSeats.includes(seatId);
-        const isSelected = selectedSeat === seatId;
-        seats.push(
-          <button
-            key={seatId}
-            className={`${styles.seat} ${isOccupied ? styles.occupied : ''} ${isSelected ? styles.selected : ''}`}
-            disabled={isOccupied}
-            onClick={() => setSelectedSeat(seatId)}
-          >
-            {c}
-          </button>
-        );
-      }
-    });
-
-    // Spacer
-    seats.push(<div key="spacer2-0" className={styles['empty-cell']}></div>);
-    for (let i = 1; i <= 17; i++) seats.push(<div key={`spacer2-${i}`} className={styles['empty-cell']}></div>);
-
-    // Block 3: P-R
-    ['P', 'Q', 'R'].forEach(r => seats.push(...renderRow(r, 17)));
 
     return seats;
   };
@@ -196,7 +110,7 @@ export default function BookingPage() {
 
       <div className={styles['seat-selection']}>
         <div className={styles['screen-container']}>
-          <div className={styles['screen-label']}>Screen This Way</div>
+          <div className={styles['screen-label']}>Stage This Way</div>
           <div className={styles['theatre-screen']}></div>
         </div>
 

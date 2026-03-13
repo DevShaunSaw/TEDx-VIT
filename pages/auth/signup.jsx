@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation"
 import Navbar from '../../components/widgets/navbar/Navbar'
 
 // Floating particle component
@@ -122,7 +122,8 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const router = useRouter();
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 80);
@@ -159,7 +160,8 @@ export default function SignupPage() {
           password: form.password,
         });
         if (signInRes?.ok) {
-          router.push("/");
+          const callbackUrl = searchParams.get("callbackUrl") || "/"
+          router.push(callbackUrl)
         } else {
           router.push("/auth/login");
         }
@@ -172,8 +174,9 @@ export default function SignupPage() {
   }
 
   async function handleGoogle() {
+    const callbackUrl = searchParams.get("callbackUrl") || "/"
     setError("");
-    await signIn("google", { callbackUrl: "/" });
+    await signIn("google", { callbackUrl: callbackUrl });
   }
 
   return (
@@ -299,7 +302,7 @@ export default function SignupPage() {
           </div>
 
           {/* Heading */}
-          <div style={{ marginBottom: "36px" }}>
+          <div style={{ marginBottom: "12px" }}>
             <h1
               style={{
                 fontSize: "28px",
@@ -310,18 +313,19 @@ export default function SignupPage() {
                 lineHeight: 1.2,
               }}
             >
-              Touching the Souls.
+              Registrer Yourself
             </h1>
-            <p
+            {/* <p
               style={{
                 fontSize: "13px",
+                align: "center",
                 color: "#555",
                 margin: 0,
                 letterSpacing: "0.02em",
               }}
             >
-              Ideas that resonate beyond words
-            </p>
+              Ideas that Resonate Beyond Words
+            </p> */}
           </div>
 
           {/* Divider */}
@@ -353,7 +357,7 @@ export default function SignupPage() {
             <InputField
               label="Password"
               type="password"
-              placeholder="Create a strong password"
+              placeholder="Create a Password"
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
