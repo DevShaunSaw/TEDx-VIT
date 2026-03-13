@@ -135,33 +135,24 @@ export default function LoginPage() {
   async function handleLogin(e) {
     e.preventDefault();
     setError("");
-
     if (!form.email || !form.password) {
       setError("Please enter your email and password.");
       return;
     }
-
     setLoading(true);
-
     const res = await signIn("credentials", {
       redirect: false,
       email: form.email,
       password: form.password,
       callbackUrl,
     });
-
-    if (res?.error) {
-      setError(res.error);
-    } else if (res?.url) {
-      router.replace(res.url);
-    }
-
     setLoading(false);
-
     if (res?.error) {
       setError(res.error);
-    } else {
-      router.replace(callbackUrl);
+      return;
+    }
+    if (res?.url) {
+      router.replace(res.url);
     }
   }
 
