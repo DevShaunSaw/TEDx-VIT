@@ -10,30 +10,24 @@ export default function HandleBooking() {
 
   useEffect(() => {
     if (status === "loading") return;
-
-    const run = async () => {
-      if (status === "unauthenticated") {
-        router.replace("/auth/login?callbackUrl=/handle-booking");
-        return;
-      }
-
-      try {
-        const res = await fetch("/api/booking/user-booking");
-
-        if (res.ok) {
-          router.replace("/ticket");
-        } else {
+    if (status === "unauthenticated") {
+      router.replace("/auth/login?callbackUrl=/handle-booking");
+      return;
+    }
+    if (status === "authenticated") {
+      fetch("/api/booking/user-booking", { cache: "no-store" })
+        .then((res) => {
+          if (res.ok) {
+            router.replace("/ticket");
+          } else {
+            router.replace("/seat-selection");
+          }
+        })
+        .catch(() => {
           router.replace("/seat-selection");
-        }
-      } catch (err) {
-        console.error("Error checking booking:", err);
-        router.replace("/seat-selection");
-      }
-    };
-
-    run();
-  }, [status]);
-
+        });
+    }
+  }, [status, router]);
   return (
     <div style={{ textAlign: "center", marginTop: "40vh", color: "white" }}>
       Checking booking...
