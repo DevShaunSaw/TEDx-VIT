@@ -14,8 +14,8 @@ const Hero = () => {
           target='_self'
           />
           <Button
-          content="Get Tickets"
-          link="/handle-booking"
+          content="Registration Closed"
+          link="#"
           target='_self'
           />
         </div>

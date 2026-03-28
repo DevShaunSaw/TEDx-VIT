@@ -29,9 +29,9 @@ export default function Edition6 () {
                   Brochure
                 </button>
                 </a> */}
-                <Link href='/handle-booking'>
+                <Link href='#'>
                 <button className={styles.yearlocation}>
-                    Get Tickets
+                    Registration Closed
                 </button>
                 </Link>
               </div>

@@ -108,7 +108,7 @@ export default function BookingPage() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <div className={styles['booking-container']}>
         <div className={styles['seat-selection']}>
           <div className={styles['screen-container']}>
@@ -159,8 +159,10 @@ export default function BookingPage() {
         open={registerOpen}
         seatValue={selectedSeat}
         onClose={() => setRegisterOpen(false)}
-      />
-
+      /> */}
+      <Navbar />
+      <h1 style={{margin: 120, cursor: "default"}}>Ticketing has now been closed! See You Next Year at TEDx-VIT</h1>
+      <MiniFooter />
     </>
   );
 }
